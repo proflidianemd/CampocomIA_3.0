@@ -28,7 +28,7 @@
     --cantos-arredondados: 12px;
     --paddings-globais: clamp(1rem, 3vw, 2.5rem);
     --sombra-suave: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-    --sombra-glow: 0 0 20px rgba(0, 180, 216, 0.25);
+    --sombra-glow: 0 0 20px rgba(12, 177, 241, 0.959);
 }
 
 /* Modificadores de Variáveis para o Modo Claro */
