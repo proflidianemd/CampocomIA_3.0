@@ -1,25 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     // ==========================================================================
-    // CONTROLES DE ACESSIBILIDADE DE FONTE E TEMA
+    // ACESSIBILIDADE - REDIMENSIONAMENTO DE FONTE E ALTERNAÇÃO DE TEMA
     // ==========================================================================
     const btnAumentar = document.getElementById("btn-aumentar");
     const btnDiminuir = document.getElementById("btn-diminuir");
     const btnTema = document.getElementById("btn-tema");
     
-    let escalaFonteBase = 100; // Percentual base
+    let porcentagemFonte = 100;
 
     btnAumentar.addEventListener("click", () => {
-        if (escalaFonteBase < 140) {
-            escalaFonteBase += 10;
-            document.documentElement.style.fontSize = `${escalaFonteBase}%`;
+        if (porcentagemFonte < 130) {
+            porcentagemFonte += 10;
+            document.documentElement.style.fontSize = `${porcentagemFonte}%`;
         }
     });
 
     btnDiminuir.addEventListener("click", () => {
-        if (escalaFonteBase > 80) {
-            escalaFonteBase -= 10;
-            document.documentElement.style.fontSize = `${escalaFonteBase}%`;
+        if (porcentagemFonte > 80) {
+            porcentagemFonte -= 10;
+            document.documentElement.style.fontSize = `${porcentagemFonte}%`;
         }
     });
 
@@ -28,111 +28,110 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ==========================================================================
-    // SÍNTESE DE VOZ (SPEECH SYNTHESIS API)
+    // SÍNTESE DE VOZ (SPEECH SYNTHESIS API) - CONTEÚDO PRINCIPAL EXCLUSIVO
     // ==========================================================================
     const btnLer = document.getElementById("btn-ler");
     const btnParar = document.getElementById("btn-parar");
-    const alvoLeitura = document.getElementById("conteudo-principal");
+    const areaLeitura = document.getElementById("conteudo-principal");
     
-    let synth = window.speechSynthesis;
-    let utterance = null;
+    const sinteseVoz = window.speechSynthesis;
+    let controleSintese = null;
 
-    if (!synth) {
+    if (!sinteseVoz) {
         btnLer.style.display = "none";
     } else {
         btnLer.addEventListener("click", () => {
-            // Cancela leituras ativas remanescentes
-            if (synth.speaking) {
-                synth.cancel();
+            if (sinteseVoz.speaking) {
+                sinteseVoz.cancel();
             }
 
-            // Seleciona parágrafos, subtítulos e títulos da área do artigo (ignora rodapés e formulários)
-            const elementosTexto = alvoLeitura.querySelectorAll("p, h1, h2, h3, blockquote");
-            let textoCompleto = "";
+            // Captura apenas elementos textuais semânticos, ignorando estruturais ou invisíveis
+            const nosTexto = areaLeitura.querySelectorAll("p, h2, h3, blockquote");
+            let textoEstruturado = "";
 
-            elementosTexto.forEach(el => {
-                // Previne a leitura de textos dentro de containers invisíveis ou placeholders de imagem
-                if (!el.closest(".placeholder-imagem") && !el.closest("details:not([open])")) {
-                    textoCompleto += el.innerText + ". ";
+            nosTexto.forEach(no => {
+                // Filtra para ignorar textos internos de containers de imagens ou accordions fechados
+                if (!no.closest(".imagem") && !no.closest("details:not([open])")) {
+                    textoEstruturado += no.innerText + ". ";
                 }
             });
 
-            utterance = new SpeechSynthesisUtterance(textoCompleto);
-            utterance.lang = "pt-BR";
-            utterance.rate = 1.0;
+            controleSintese = new SpeechSynthesisUtterance(textoEstruturado);
+            controleSintese.lang = "pt-BR";
+            controleSintese.rate = 1.0;
 
-            utterance.onstart = () => {
+            controleSintese.onstart = () => {
                 btnLer.hidden = true;
                 btnParar.hidden = false;
-                alvoLeitura.classList.add("leitura-ativa");
+                areaLeitura.classList.add("elemento-leitura-ativa");
             };
 
-            utterance.onend = () => {
-                finalizarPainelVoz();
+            controleSintese.onend = () => {
+                resetarInterfaceVoz();
             };
 
-            utterance.onerror = () => {
-                finalizarPainelVoz();
+            controleSintese.onerror = () => {
+                resetarInterfaceVoz();
             };
 
-            synth.speak(utterance);
+            sinteseVoz.speak(controleSintese);
         });
 
         btnParar.addEventListener("click", () => {
-            if (synth.speaking) {
-                synth.cancel();
+            if (sinteseVoz.speaking) {
+                sinteseVoz.cancel();
             }
-            finalizarPainelVoz();
+            resetarInterfaceVoz();
         });
     }
 
-    function finalizarPainelVoz() {
+    function resetarInterfaceVoz() {
         btnLer.hidden = false;
         btnParar.hidden = true;
-        alvoLeitura.classList.remove("leitura-ativa");
+        areaLeitura.classList.remove("elemento-leitura-ativa");
     }
 
-    // Evita loop de execução de voz se o usuário fechar a aba
+    // Garante interrupção da fala caso o usuário feche a aba
     window.addEventListener("beforeunload", () => {
-        if (synth && synth.speaking) {
-            synth.cancel();
+        if (sinteseVoz && sinteseVoz.speaking) {
+            sinteseVoz.cancel();
         }
     });
 
     // ==========================================================================
-    // ENVIO E VALIDAÇÃO DO FORMULÁRIO DE INSCRIÇÃO LATERAL
+    // CAPTURA E PROCESSAMENTO DO FORMULÁRIO LATERAL
     // ==========================================================================
     const formInscricao = document.getElementById("form-inscricao");
-    const msgSucesso = document.getElementById("mensagem-sucesso");
+    const statusInscricao = document.getElementById("status-inscricao");
 
-    formInscricao.addEventListener("submit", (e) => {
-        e.preventDefault();
+    formInscricao.addEventListener("submit", (evento) => {
+        evento.preventDefault();
         
-        // Simulação de envio seguro de dados
-        msgSucesso.hidden = false;
+        statusInscricao.innerText = "Inscrição realizada com sucesso! Verifique seu e-mail.";
+        statusInscricao.hidden = false;
         formInscricao.reset();
         
         setTimeout(() => {
-            msgSucesso.hidden = true;
-        }, 6000);
+            statusInscricao.hidden = true;
+        }, 5000);
     });
 
     // ==========================================================================
-    // ÁREA DE COMENTÁRIOS E INTERAÇÃO DINÂMICA
+    // SEÇÃO DE COMENTÁRIOS COM SANITIZAÇÃO DE INPUT (ANTI-XSS)
     // ==========================================================================
     const formComentario = document.getElementById("form-comentario");
-    const txtComentario = document.getElementById("txt-comentario");
+    const campoComentario = document.getElementById("campo-comentario");
     const listaComentarios = document.getElementById("lista-comentarios");
 
-    formComentario.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const texto = txtComentario.value.trim();
+    formComentario.addEventListener("submit", (evento) => {
+        evento.preventDefault();
+        const textoPuro = campoComentario.value.trim();
 
-        if (texto) {
-            const containerComentario = document.createElement("div");
-            containerComentario.className = "comentario-bloco";
+        if (textoPuro) {
+            const blocoComentario = document.createElement("div");
+            blocoComentario.className = "comentario-item";
 
-            const dataAtual = new Date().toLocaleDateString("pt-BR", {
+            const dataString = new Date().toLocaleDateString("pt-BR", {
                 day: "2-digit",
                 month: "2-digit",
                 year: "numeric",
@@ -140,27 +139,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 minute: "2-digit"
             });
 
-            // Proteção contra injeção de scripts maliciosos (XSS)
-            containerComentario.innerHTML = `
-                <div class="comentario-meta">Leitor Conectado • ${dataAtual}</div>
-                <p>${escapeHTML(texto)}</p>
+            // Inserção segura tratando caracteres especiais para mitigar XSS
+            blocoComentario.innerHTML = `
+                <div class="comentario-data">Visitante • ${dataString}</div>
+                <p>${sanitizarTexto(textoPuro)}</p>
             `;
 
-            // Adiciona sempre o comentário mais recente no topo
-            listaComentarios.insertBefore(containerComentario, listaComentarios.firstChild);
-            txtComentario.value = "";
+            // Adiciona o novo comentário sempre no topo da lista
+            listaComentarios.insertBefore(blocoComentario, listaComentarios.firstChild);
+            campoComentario.value = "";
         }
     });
 
-    function escapeHTML(str) {
-        return str.replace(/[&<>'"]/g, 
-            tag => ({
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                "'": '&#39;',
-                '"': '&quot;'
-            }[tag] || tag)
-        );
+    function sanitizarTexto(string) {
+        return string.replace(/[&<>'"]/g, caractere => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[caractere] || caractere));
     }
 });

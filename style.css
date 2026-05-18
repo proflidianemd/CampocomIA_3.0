@@ -1,50 +1,48 @@
 /* ==========================================================================
-   VARIÁVEIS CONFIGURÁVEIS (BOAS PRÁTICAS PARA CUSTOMIZAÇÃO)
+   VARIÁVEIS DE CONFIGURAÇÃO VISUAL (FÁCIL CUSTOMIZAÇÃO)
    ========================================================================== */
 :root {
-    /* Paleta Exigida */
-    --cor-azul: #0a192f;
-    --cor-branco: #ffffff;
-    --cor-azul-celeste: #00b4d8;
-    --cor-azul-metalico: #1e3a8a;
-    --cor-verde: #10b981;
-    --cor-amarelo: #fbbf24;
-    --cor-ouro: #d97706;
-    --cor-preto: #020617;
+    /* Paleta de Cores Exigida */
+    --azul: #0a192f;
+    --branco: #ffffff;
+    --azul-celeste: #00b4d8;
+    --azul-metalico: #1e3a8a;
+    --verde: #10b981;
+    --amarelo: #fbbf24;
+    --ouro: #d97706;
+    --preto: #020617;
 
-    /* Tema de Cores Padrão (Escuro / Futurista) */
-    --bg-global: var(--cor-preto);
+    /* Configurações de Cores de Componentes Dinâmicos */
+    --bg-pagina: var(--preto);
     --bg-card: #0f172a;
     --bg-card-hover: #1e293b;
-    --text-principal: #f8fafc;
-    --text-secundario: #94a3b8;
-    --borda-componente: #334155;
+    --borda-cor: #334155;
+    --texto-principal: #f8fafc;
+    --texto-secundario: #94a3b8;
+
+    /* Tipografia e Escalas Fluidas */
+    --familia-fonte: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --tamanho-base: clamp(1rem, 0.95rem + 0.25vw, 1.2rem);
     
-    /* Fontes e Tamanhos Dinâmicos */
-    --fonte-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
-    
-    /* Espaçamento Global Parametrizável */
-    --espacamento-p: 1.5rem;
-    --espacamento-m: 2.5rem;
-    --raio-borda: 16px;
-    --sombra-suave: 0 10px 30px -10px rgba(2, 6, 23, 0.7);
-    --sombra-glow: 0 0 25px rgba(0, 180, 216, 0.2);
+    /* Cantos, Espaçamentos e Sombras Customizáveis */
+    --cantos-arredondados: 12px;
+    --paddings-globais: clamp(1rem, 3vw, 2.5rem);
+    --sombra-suave: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    --sombra-glow: 0 0 20px rgba(0, 180, 216, 0.25);
 }
 
-/* Modificações de Variáveis para o Tema Claro */
+/* Modificadores de Variáveis para o Modo Claro */
 body.light-mode {
-    --bg-global: #f8fafc;
-    --bg-card: var(--cor-branco);
+    --bg-pagina: #f8fafc;
+    --bg-card: var(--branco);
     --bg-card-hover: #f1f5f9;
-    --text-principal: #0f172a;
-    --text-secundario: #475569;
-    --borda-componente: #cbd5e1;
-    --sombra-suave: 0 10px 30px -10px rgba(148, 163, 184, 0.2);
+    --borda-cor: #cbd5e1;
+    --texto-principal: #0f172a;
+    --texto-secundario: #475569;
 }
 
 /* ==========================================================================
-   RESETS E CONFIGURAÇÕES DE FLUIDEZ
+   RESETS E COMPORTAMENTOS FLUIDOS GERAIS
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -53,12 +51,12 @@ body.light-mode {
 }
 
 body {
-    background-color: var(--bg-global);
-    color: var(--text-principal);
-    font-family: var(--fonte-principal);
-    font-size: var(--font-size-base);
-    line-height: 1.7;
-    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
+    background-color: var(--bg-pagina);
+    color: var(--texto-principal);
+    font-family: var(--familia-fonte);
+    font-size: var(--tamanho-base);
+    line-height: 1.65;
+    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
     overflow-x: hidden;
 }
 
@@ -66,10 +64,10 @@ body {
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 var(--espacamento-p);
+    padding: 0 var(--paddings-globais);
 }
 
-/* Utilitário Acessibilidade / Leitores de Tela */
+/* Esconder elementos mantendo acessibilidade ativa para leitores de tela */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -84,61 +82,59 @@ body {
     position: fixed;
     top: 20px;
     left: 20px;
-    width: auto;
-    height: auto;
-    padding: 15px;
-    background-color: var(--cor-amarelo);
-    color: var(--cor-preto);
-    font-weight: bold;
-    border-radius: 8px;
     z-index: 99999;
+    background-color: var(--amarelo);
+    color: var(--preto);
+    padding: 1rem;
+    border-radius: var(--cantos-arredondados);
+    font-weight: bold;
 }
 
-/* Destaque visual temporário ao ler por voz */
-.leitura-ativa {
-    outline: 3px solid var(--cor-azul-celeste);
+/* Estilo para destacar o elemento que está sendo lido por voz */
+.elemento-leitura-ativa {
+    outline: 3px solid var(--azul-celeste);
+    background-color: rgba(0, 180, 216, 0.08);
     border-radius: 4px;
-    background-color: rgba(0, 180, 216, 0.05);
 }
 
 /* ==========================================================================
-   CAIXA FLUTUANTE DE ACESSIBILIDADE
+   CAIXA FLUTUANTE DE ACESSIBILIDADE (INFERIOR ESQUERDA)
    ========================================================================== */
 .acessibilidade-painel {
     position: fixed;
-    bottom: 30px;
-    left: 30px;
-    z-index: 1000;
-    background: var(--bg-card);
-    border: 2px solid var(--cor-azul-celeste);
+    bottom: clamp(15px, 3vw, 30px);
+    left: clamp(15px, 3vw, 30px);
+    z-index: 2000;
+    background-color: var(--bg-card);
+    border: 2px solid var(--azul-celeste);
     border-radius: 50px;
-    padding: 8px;
+    padding: 6px;
     display: flex;
-    gap: 10px;
+    gap: 8px;
     box-shadow: var(--sombra-suave), var(--sombra-glow);
 }
 
 .acessibilidade-painel button {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     border: none;
-    background: var(--cor-azul);
-    color: var(--cor-branco);
-    font-size: 1.1rem;
+    background-color: var(--azul);
+    color: var(--branco);
+    font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .acessibilidade-painel button:hover, 
 .acessibilidade-painel button:focus {
-    background: var(--cor-azul-celeste);
-    color: var(--cor-preto);
-    transform: scale(1.1);
+    background-color: var(--azul-celeste);
+    color: var(--preto);
+    transform: translateY(-3px);
     outline: none;
 }
 
@@ -146,15 +142,14 @@ body {
    HERO SECTION (BANNER PRINCIPAL)
    ========================================================================== */
 .hero {
-    min-height: clamp(350px, 40vh, 600px);
-    background: linear-gradient(135deg, rgba(10, 25, 47, 0.9) 0%, rgba(2, 6, 23, 0.95) 100%);
-    border-bottom: 4px solid var(--cor-verde);
+    min-height: clamp(350px, 50vh, 550px);
+    background: linear-gradient(135deg, rgba(10, 25, 47, 0.88) 0%, rgba(2, 6, 23, 0.95) 100%);
+    border-bottom: 4px solid var(--verde);
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: var(--espacamento-m) var(--espacamento-p);
-    position: relative;
+    padding: var(--paddings-globais);
 }
 
 .hero-wrapper {
@@ -162,25 +157,25 @@ body {
 }
 
 .hero-titulo {
-    font-size: clamp(2.2rem, 5vw, 4rem);
-    line-height: 1.2;
-    color: var(--cor-branco);
-    margin-bottom: 1.5rem;
-    letter-spacing: -1px;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    line-height: 1.15;
+    color: var(--branco);
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.5px;
 }
 
 body.light-mode .hero-titulo {
-    color: var(--cor-azul-metalico);
+    color: var(--azul-metalico);
 }
 
 .hero-subtitulo {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    color: var(--cor-azul-celeste);
-    margin-bottom: 2rem;
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    color: var(--azul-celeste);
+    margin-bottom: 1.8rem;
 }
 
 body.light-mode .hero-subtitulo {
-    color: var(--text-secundario);
+    color: var(--texto-secundario);
 }
 
 /* ==========================================================================
@@ -188,8 +183,8 @@ body.light-mode .hero-subtitulo {
    ========================================================================== */
 .btn {
     display: inline-block;
-    padding: 0.8rem 2rem;
-    border-radius: var(--raio-borda);
+    padding: 0.85rem 1.8rem;
+    border-radius: var(--cantos-arredondados);
     font-weight: 700;
     text-decoration: none;
     cursor: pointer;
@@ -198,121 +193,128 @@ body.light-mode .hero-subtitulo {
 }
 
 .btn-primary {
-    background: var(--cor-azul-celeste);
-    color: var(--cor-preto);
+    background-color: var(--azul-celeste);
+    color: var(--preto);
 }
 .btn-primary:hover, .btn-primary:focus {
-    background: transparent;
-    border-color: var(--cor-azul-celeste);
-    color: var(--cor-azul-celeste);
+    background-color: transparent;
+    border-color: var(--azul-celeste);
+    color: var(--azul-celeste);
     box-shadow: var(--sombra-glow);
 }
 
 .btn-secondary {
-    background: var(--cor-azul-metalico);
-    color: var(--cor-branco);
+    background-color: var(--azul-metalico);
+    color: var(--branco);
 }
 .btn-secondary:hover, .btn-secondary:focus {
-    background: var(--cor-azul-celeste);
-    color: var(--cor-preto);
+    background-color: var(--azul-celeste);
+    color: var(--preto);
 }
 
 .btn-gold {
-    background: linear-gradient(135deg, var(--cor-ouro) 0%, #b45309 100%);
-    color: var(--cor-branco);
+    background-color: var(--ouro);
+    color: var(--branco);
+    width: 100%;
 }
 .btn-gold:hover, .btn-gold:focus {
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(217, 119, 6, 0.4);
-}
-
-.btn-full {
-    width: 100%;
+    background-color: var(--amarelo);
+    color: var(--preto);
+    box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
 }
 
 /* ==========================================================================
-   GRID DE ESTRUTURAÇÃO GERAL (RESPONSIVIDADE MÁXIMA)
+   GRID DE LAYOUT RESPONSIVO (CONTEÚDO E SIDEBAR)
    ========================================================================== */
 .main-layout {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--espacamento-m);
-    margin-top: var(--espacamento-m);
-    margin-bottom: var(--espacamento-m);
+    gap: var(--paddings-globais);
+    margin-top: var(--paddings-globais);
+    margin-bottom: var(--paddings-globais);
 }
 
 @media (min-width: 1024px) {
     .main-layout {
-        grid-template-columns: minmax(600px, 2.5fr) minmax(300px, 1fr);
+        grid-template-columns: minmax(600px, 2.6fr) minmax(320px, 1fr);
     }
 }
 
 /* ==========================================================================
-   ARTIGO E COMPONENTES DE TEXTO
+   BLOCOS DE CONTEÚDO DO ARTIGO
    ========================================================================== */
 .artigo-principal {
     display: flex;
     flex-direction: column;
-    gap: var(--espacamento-p);
+    gap: var(--paddings-globais);
+}
+
+.bloco-texto h2 {
+    font-size: clamp(1.4rem, 3vw, 2.1rem);
+    color: var(--branco);
+    margin-bottom: 1rem;
+}
+body.light-mode .bloco-texto h2 {
+    color: var(--azul-metalico);
 }
 
 .bloco-texto p {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     text-align: justify;
 }
 
 .texto-destaque {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 600;
-    color: var(--cor-verde);
-    border-left: 4px solid var(--cor-verde);
+    color: var(--verde);
+    border-left: 4px solid var(--verde);
     padding-left: 1rem;
 }
 
 strong {
-    color: var(--cor-amarelo);
+    color: var(--amarelo);
 }
 body.light-mode strong {
-    color: var(--cor-ouro);
+    color: var(--ouro);
 }
 
-.citacao-agro {
-    background: var(--bg-card);
-    padding: var(--espacamento-p);
-    border-radius: var(--raio-borda);
-    border-right: 4px solid var(--cor-ouro);
+.citacao-painel {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--cantos-arredondados);
+    border-right: 4px solid var(--ouro);
     font-style: italic;
     box-shadow: var(--sombra-suave);
 }
 
 /* ==========================================================================
-   SEÇÕES EXPANSÍVEIS (ACCORDION NATIVO MODERNIZADO)
+   SEÇÕES EXPANSÍVEIS (ACCORDION)
    ========================================================================== */
 .accordion {
-    background: var(--bg-card);
-    border: 1px solid var(--borda-componente);
-    border-radius: var(--raio-borda);
-    padding: 1rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--borda-cor);
+    border-radius: var(--cantos-arredondados);
+    padding: 1.2rem;
     box-shadow: var(--sombra-suave);
 }
 
 .accordion-header {
     font-weight: 700;
-    color: var(--cor-branco);
     cursor: pointer;
     list-style: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: var(--branco);
 }
 body.light-mode .accordion-header {
-    color: var(--text-principal);
+    color: var(--texto-principal);
 }
 
 .accordion-icon {
-    font-size: 0.8rem;
-    color: var(--cor-azul-celeste);
-    transition: transform 0.3s ease;
+    font-size: 0.85rem;
+    color: var(--azul-celeste);
+    transition: transform 0.2s ease;
 }
 
 .accordion[open] .accordion-icon {
@@ -322,255 +324,249 @@ body.light-mode .accordion-header {
 .accordion-content {
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid var(--borda-componente);
+    border-top: 1px solid var(--borda-cor);
 }
 
 /* ==========================================================================
-   CARDS INTERATIVOS (BENEFÍCIOS DA IA)
+   CARDS DE BENEFÍCIOS DA INTELIGÊNCIA ARTIFICIAL
    ========================================================================== */
-.beneficios-secao {
-    margin-top: var(--espacamento-m);
+.beneficios-secao h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    margin-bottom: 1rem;
 }
 
-.secao-titulo {
-    font-size: 1.8rem;
-    color: var(--cor-branco);
-    margin-bottom: 0.5rem;
-}
-body.light-mode .secao-titulo {
-    color: var(--cor-azul-metalico);
-}
-
-.secao-sub {
-    color: var(--text-secundario);
-    margin-bottom: var(--espacamento-p);
+.introducao-ia, .chamada-ia {
+    margin-bottom: 1.2rem;
+    text-align: justify;
 }
 
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .card {
-    background: var(--bg-card);
-    border: 1px solid var(--borda-componente);
-    border-radius: var(--raio-borda);
-    padding: 1.8rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--borda-cor);
+    border-radius: var(--cantos-arredondados);
+    padding: 1.5rem;
     position: relative;
-    overflow: hidden;
     box-shadow: var(--sombra-suave);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card-icon {
-    font-size: 2.5rem;
-    display: block;
-    margin-bottom: 1rem;
+.card-num {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: rgba(0, 180, 216, 0.15);
 }
 
 .card h3 {
-    font-size: 1.25rem;
-    color: var(--cor-branco);
-    margin-bottom: 0.8rem;
-}
-body.light-mode .card h3 {
-    color: var(--text-principal);
+    font-size: 1.2rem;
+    color: var(--azul-celeste);
+    margin-bottom: 0.6rem;
+    padding-right: 30px;
 }
 
 .card p {
     font-size: 0.95rem;
-    color: var(--text-secundario);
+    color: var(--texto-secundario);
+    text-align: justify;
 }
 
-/* Efeito Hover Premium Futurista */
 .card:hover {
-    transform: translateY(-5px);
-    border-color: var(--cor-azul-celeste);
+    transform: translateY(-4px);
+    border-color: var(--azul-celeste);
     box-shadow: var(--sombra-suave), var(--sombra-glow);
 }
 
 /* ==========================================================================
-   CONVENÇÃO DE PLACEHOLDERS PARA AS 3 IMAGENS
+   ESTRUTURA OBRIGATÓRIA E PREMIUM DAS IMAGENS
    ========================================================================== */
-.placeholder-imagem {
+.imagem {
     width: 100%;
-    height: clamp(200px, 30vw, 350px);
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border: 2px dashed var(--cor-azul-celeste);
-    border-radius: var(--raio-borda);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    border-radius: var(--cantos-arredondados);
+    overflow: hidden;
+    background-color: #0f172a;
     box-shadow: var(--sombra-suave);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--borda-cor);
 }
 
-.placeholder-imagem:hover {
-    transform: scale(1.02);
-    border-style: solid;
-    border-color: var(--cor-verde);
-    box-shadow: 0 15px 30px rgba(16, 119, 181, 0.15);
+.imagem img {
+    width: 100%;
+    height: clamp(200px, 35vw, 400px);
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
 }
 
-.placeholder-icon {
-    font-size: 3rem;
-}
-
-.placeholder-imagem p {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--cor-azul-celeste);
+.imagem:hover img {
+    transform: scale(1.03);
 }
 
 /* ==========================================================================
-   FORMULÁRIO LATERAL (STICKY SIDEBAR)
+   FORMULÁRIO DE INSCRIÇÃO LATERAL (STICKY SIDEBAR)
    ========================================================================== */
-.sidebar-lateral {
+.sidebar-direita {
     width: 100%;
 }
 
-.sidebar-card {
+.sticky-box {
     position: sticky;
-    top: 30px;
-    background: var(--bg-card);
-    border: 1px solid var(--borda-componente);
-    border-top: 5px solid var(--cor-ouro);
-    border-radius: var(--raio-borda);
-    padding: 2rem;
+    top: 25px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--borda-cor);
+    border-top: 5px solid var(--ouro);
+    border-radius: var(--cantos-arredondados);
+    padding: 1.8rem;
     box-shadow: var(--sombra-suave);
 }
 
-.sidebar-card h2 {
-    font-size: 1.4rem;
-    color: var(--cor-branco);
+.sticky-box h2 {
+    font-size: 1.3rem;
     line-height: 1.3;
-    margin-bottom: 1rem;
+    color: var(--branco);
+    margin-bottom: 0.6rem;
 }
-body.light-mode .sidebar-card h2 {
-    color: var(--text-principal);
+body.light-mode .sticky-box h2 {
+    color: var(--texto-principal);
 }
 
-.sidebar-card p {
+.sticky-box p {
     font-size: 0.95rem;
-    color: var(--text-secundario);
-    margin-bottom: 1.5rem;
+    color: var(--texto-secundario);
+    margin-bottom: 1.2rem;
 }
 
 .form-grupo {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.4rem;
 }
 
 .form-grupo label {
     font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
     font-weight: 600;
-    color: var(--text-secundario);
+    color: var(--texto-secundario);
 }
 
 .form-grupo input, .form-grupo textarea {
     width: 100%;
-    padding: 0.8rem 1rem;
-    background: var(--bg-global);
-    border: 1px solid var(--borda-componente);
-    border-radius: 8px;
-    color: var(--text-principal);
+    padding: 0.75rem 1rem;
+    background-color: var(--bg-pagina);
+    border: 1px solid var(--borda-cor);
+    border-radius: 6px;
+    color: var(--texto-principal);
     font-family: inherit;
-    font-size: 1rem;
-    transition: all 0.2s ease;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease;
 }
 
 .form-grupo input:focus, .form-grupo textarea:focus {
     outline: none;
-    border-color: var(--cor-azul-celeste);
-    box-shadow: 0 0 10px rgba(0, 180, 216, 0.2);
+    border-color: var(--azul-celeste);
 }
 
-.msg-sucesso {
+.status-alerta {
     margin-top: 1rem;
-    padding: 0.8rem;
-    background: rgba(16, 185, 129, 0.1);
-    border: 1px solid var(--cor-verde);
-    color: var(--cor-verde);
-    border-radius: 8px;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
     text-align: center;
-    font-size: 0.95rem;
+    background-color: rgba(16, 185, 129, 0.12);
+    border: 1px solid var(--verde);
+    color: var(--verde);
 }
 
 /* ==========================================================================
-   INTERAÇÃO (COMENTÁRIOS) E REFERÊNCIAS
+   INTERAÇÃO (COMENTÁRIOS)
    ========================================================================== */
-.comentarios-secao {
-    background: var(--bg-card);
-    padding: 2rem;
-    border-radius: var(--raio-borda);
-    box-shadow: var(--sombra-suave);
-    margin-top: var(--espacamento-m);
+.comentarios-wrapper {
+    background-color: var(--bg-card);
+    padding: 1.8rem;
+    border-radius: var(--cantos-arredondados);
+    border: 1px solid var(--borda-cor);
+}
+
+.comentarios-wrapper h3 {
+    margin-bottom: 0.4rem;
+}
+
+.comentarios-wrapper p {
+    color: var(--texto-secundario);
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
 }
 
 .lista-comentarios {
     margin-top: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.8rem;
 }
 
-.comentario-bloco {
-    background: var(--bg-global);
+.comentario-item {
+    background-color: var(--bg-pagina);
     padding: 1rem;
-    border-radius: 8px;
-    border-left: 3px solid var(--cor-azul-celeste);
+    border-radius: 6px;
+    border-left: 3px solid var(--azul-celeste);
 }
 
-.comentario-meta {
-    font-size: 0.8rem;
-    color: var(--text-secundario);
+.comentario-data {
+    font-size: 0.75rem;
+    color: var(--texto-secundario);
     margin-bottom: 0.3rem;
 }
 
-.referencias-bloco {
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--borda-componente);
-}
-
-.referencias-bloco h4 {
-    margin-bottom: 0.5rem;
-    color: var(--text-secundario);
-}
-
-.referencias-bloco ul {
-    list-style-position: inside;
-}
-
-.referencias-bloco a {
-    color: var(--cor-azul-celeste);
-    text-decoration: none;
-}
-.referencias-bloco a:hover {
-    text-decoration: underline;
-}
-
 /* ==========================================================================
-   RODAPÉ GLOBAL
+   RODAPÉ GLOBAL E REFERÊNCIAS
    ========================================================================== */
 .rodape-global {
-    background: var(--cor-preto);
-    border-top: 1px solid var(--borda-componente);
-    padding: var(--espacamento-p) 0;
-    text-align: center;
+    background-color: var(--preto);
+    border-top: 1px solid var(--borda-cor);
+    padding: 2rem 0;
+    margin-top: var(--paddings-globais);
     font-size: 0.9rem;
-    color: var(--text-secundario);
-    margin-top: var(--espacamento-m);
 }
 
-.rodape-wrapper {
+.rodape-grid {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .rodape-grid {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.rodape-assinatura {
+    color: var(--texto-secundario);
+    max-width: 500px;
+}
+
+.rodape-fontes h4 {
+    margin-bottom: 0.4rem;
+}
+
+.rodape-fontes ul {
+    list-style: none;
+}
+
+.rodape-fontes a {
+    color: var(--azul-celeste);
+    text-decoration: none;
+}
+
+.rodape-fontes a:hover {
+    text-decoration: underline;
 }
