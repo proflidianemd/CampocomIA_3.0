@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroFuturo - Inteligência Artificial e Sustentabilidade no Campo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="accessibility-panel" role="region" aria-label="Painel de Acessibilidade">
+        <div class="acc-title">Acessibilidade</div>
+        <div class="acc-buttons">
+            <button id="btn-font-plus" title="Aumentar Fonte">A+</button>
+            <button id="btn-font-minus" title="Diminuir Fonte">A-</button>
+            <button id="btn-theme-toggle" title="Alternar Modo Escuro/Claro">🌓 Tema</button>
+            <button id="btn-contrast-toggle" title="Alternar Alto Contraste">⚫ Contraste</button>
+            <button id="btn-speech-start" title="Iniciar Leitura por Voz">🔊 Ler</button>
+            <button id="btn-speech-stop" title="Parar Leitura por Voz">⏹ Parar</button>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo">AGRO<span>FUTURO</span></div>
+            <a href="#seminario-inscricao" class="nav-cta">Participar do Seminário</a>
+        </nav>
+    </header>
+
+    <main id="read-target" class="main-layout">
+        
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="tech-badge">Tecnologia Agrícola Tropical</span>
+                    <h1>Tecnologia agrícola reforça papel estratégico do Brasil</h1>
+                    <p>A agricultura sustentável ganha espaço no debate global em um momento de pressão sobre custos, segurança alimentar, energia e mudanças climáticas. O país une produtividade, inovação e capacidade de adaptação no campo através da inteligência aplicada.</p>
+                    <a href="#ia-beneficios" class="btn-hero">Explorar Inovações</a>
+                </div>
+                <div class="image-wrapper hero-img">
+                    <div class="img-placeholder">
+                        <span class="placeholder-tag">[Espaço para Imagem 1 - Jpeg: Visão Panorâmica de Agro-Tech Futurista]</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="content-sidebar-grid">
+            
+            <div class="primary-content-column">
+                
+                <section class="content-block">
+                    <h2>A Transformação Silenciosa dos Bioinsumos</h2>
+                    <p>Enquanto temas como <strong>inteligência artificial</strong>, guerras comerciais e a nova corrida energética dominam parte das discussões internacionais, uma transformação menos ruidosa vem fortalecendo o papel brasileiro na inovação agrícola. O avanço de tecnologias baseadas no uso de microrganismos nas lavouras mostra como o país pode contribuir para reduzir a dependência de fertilizantes químicos, um dos insumos mais caros e sensíveis da produção de alimentos.</p>
+                    
+                    <p>O trabalho da microbiologista brasileira <strong>Mariangela Hungria</strong> ganhou projeção internacional após décadas dedicadas ao desenvolvimento de bactérias capazes de substituir parte dos fertilizantes industriais. Na prática, esses microrganismos capturam nitrogênio diretamente do ar e o transferem para as plantas, ampliando a eficiência produtiva e reduzindo a necessidade de insumos nitrogenados.</p>
+                </section>
+
+                <section class="quote-block">
+                    <blockquote class="modern-quote">
+                        “Num planeta preocupado com segurança alimentar, inflação e mudanças climáticas, talvez uma das soluções mais sofisticadas do século esteja justamente onde o Brasil sempre foi forte: no campo. Porque, às vezes, o verdadeiro ouro não está no solo. Está na inteligência de quem aprende a trabalhar com ele.”
+                    </blockquote>
+                </section>
+
+                <div class="image-wrapper mid-img">
+                    <div class="img-placeholder">
+                        <span class="placeholder-tag">[Espaço para Imagem 2 - Jpeg: Sensores Biométricos e Biotecnologia nas Lavouras]</span>
+                    </div>
+                </div>
+
+                <section id="ia-beneficios" class="content-block">
+                    <h2>Quais os principais benefícios da Inteligência Artificial no campo?</h2>
+                    <p>A agricultura está passando por diversas transformações à medida que vai se modernizando e adotando inovações tecnológicas. A <strong>Inteligência Artificial (IA)</strong> faz parte desse movimento e promete revolucionar o setor.</p>
+                    <p>Ela permite a otimização do uso de recursos no campo, além de permitir a automatização de processos complexos, contribuindo para o aumento da eficiência, produtividade e sustentabilidade das operações. Diante de recursos naturais finitos e mudanças climáticas, contar com a IA é peça-chave para expandir os negócios com resiliência.</p>
+                    
+                    <div id="accordion-container" class="accordion-wrapper"></div>
+                </section>
+
+                <div class="image-wrapper bottom-img">
+                    <div class="img-placeholder">
+                        <span class="placeholder-tag">[Espaço para Imagem 3 - Jpeg: Automação por Drones e Maquinário Autônomo]</span>
+                    </div>
+                </div>
+
+                <section class="interaction-block">
+                    <h3>Comunidade AgroFuturo</h3>
+                    <p>O que você pensa sobre o impacto da Inteligência Artificial na sua região? Deixe sua contribuição abaixo:</p>
+                    <form id="comment-form" class="comment-container">
+                        <label for="txt-comment" class="sr-only">Escreva seu comentário técnico</label>
+                        <textarea id="txt-comment" placeholder="Digite seu comentário ou dúvida sobre inovação no campo..." required></textarea>
+                        <button type="submit" class="btn-comment">Enviar Comentário</button>
+                    </form>
+                    <div id="comment-success" class="alert-success" aria-hidden="true">Obrigado! Seu comentário foi enviado para moderação técnica.</div>
+                </section>
+
+            </div>
+
+            <aside id="seminario-inscricao" class="sidebar-column">
+                <div class="sticky-card-form">
+                    <h3>Venha conhecer melhor como a IA pode ser uma aliada do Campo.</h3>
+                    <p>Inscreva-se no nosso seminário on-line e garanta acesso às palestras exclusivas dos especialistas da área.</p>
+                    
+                    <form id="lead-form" novalidate>
+                        <div class="form-group">
+                            <label for="inp-name">Nome Completo</label>
+                            <input type="text" id="inp-name" required placeholder="Ex: Jean Silva">
+                            <span class="error-text">O campo nome é obrigatório.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inp-email">E-mail Corporativo</label>
+                            <input type="email" id="inp-email" required placeholder="nome@empresa.com">
+                            <span class="error-text">Digite um e-mail válido.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inp-city">Cidade</label>
+                            <input type="text" id="inp-city" required placeholder="Ex: Castro">
+                            <span class="error-text">Informe a cidade.</span>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="inp-state">Estado</label>
+                                <input type="text" id="inp-state" required placeholder="PR" maxlength="2">
+                                <span class="error-text">Obrigatório.</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="inp-country">País</label>
+                                <input type="text" id="inp-country" required placeholder="Brasil">
+                                <span class="error-text">Obrigatório.</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-submit-tech">Garantir Minha Inscrição</button>
+                    </form>
+                    <div id="lead-success" class="alert-success" aria-hidden="true">Inscrição homologada com sucesso! O link de acesso foi encaminhado ao seu e-mail.</div>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-wrapper">
+            <div class="footer-info">
+                <p><strong>AgroFuturo 2026</strong> - Conectando a inteligência tecnológica à terra de forma sustentável.</p>
+                <p class="references-links">
+                    Referências de conteúdo: 
+                    <a href="https://www.bemagro.com/beneficios-inteligencia-artificial-no-campo/" target="_blank" rel="noreferrer">BemAgro</a> | 
+                    <a href="https://www.agrolink.com.br/noticias/o-campo-conectado--como-a-ia-vem-transformando-o-agro_514351.html" target="_blank" rel="noreferrer">Agrolink</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
