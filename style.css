@@ -1,12 +1,12 @@
-/* ==========================================================================
-   VARIÁVEIS DE CONFIGURAÇÃO VISUAL (FÁCIL CUSTOMIZAÇÃO)
-   ========================================================================== */
+
+   /*VARIÁVEIS DE CONFIGURAÇÃO VISUAL */
+
 :root {
     /* Paleta de Cores Exigida */
     --azul: #0a192f;
     --branco: #ffffff;
     --azul-celeste: #00b4d8;
-    --azul-metalico: #1e3a8a;
+    --azul-metalico: #899fdb;
     --verde: #10b981;
     --amarelo: #fbbf24;
     --ouro: #d97706;
@@ -17,7 +17,7 @@
     --bg-card: #0f172a;
     --bg-card-hover: #1e293b;
     --borda-cor: #334155;
-    --texto-principal: #f8fafc;
+    --texto-principal: #b3fc21;
     --texto-secundario: #94a3b8;
 
     /* Tipografia e Escalas Fluidas */
@@ -41,9 +41,9 @@ body.light-mode {
     --texto-secundario: #475569;
 }
 
-/* ==========================================================================
+/* 
    RESETS E COMPORTAMENTOS FLUIDOS GERAIS
-   ========================================================================== */
+ */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -97,9 +97,9 @@ body {
     border-radius: 4px;
 }
 
-/* ==========================================================================
+/* 
    CAIXA FLUTUANTE DE ACESSIBILIDADE (INFERIOR ESQUERDA)
-   ========================================================================== */
+    */
 .acessibilidade-painel {
     position: fixed;
     bottom: clamp(15px, 3vw, 30px);
