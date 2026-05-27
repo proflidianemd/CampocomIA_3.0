@@ -4,7 +4,7 @@
 :root {
     /* Paleta de Cores Exigida */
     --azul: #0a192f;
-    --branco: #ffffff;
+    --branco: #fcfcfc;
     --azul-celeste: #00b4d8;
     --azul-metalico: #f41be6;
     --verde: #10b981;
@@ -17,7 +17,7 @@
     --bg-card: #0f172a;
     --bg-card-hover: #1e293b;
     --borda-cor: #334155;
-    --texto-principal: #f4f5f200;
+    --texto-principal: #f6f5fe;
     --texto-secundario: #94a3b8;
 
     /* Tipografia e Escalas Fluidas */
