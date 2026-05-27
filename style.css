@@ -6,7 +6,7 @@
     --azul: #0a192f;
     --branco: #ffffff;
     --azul-celeste: #00b4d8;
-    --azul-metalico: #899fdb;
+    --azul-metalico: #f41be6;
     --verde: #10b981;
     --amarelo: #fbbf24;
     --ouro: #d97706;
@@ -17,7 +17,7 @@
     --bg-card: #0f172a;
     --bg-card-hover: #1e293b;
     --borda-cor: #334155;
-    --texto-principal: #b3fc21;
+    --texto-principal: #f4f5f200;
     --texto-secundario: #94a3b8;
 
     /* Tipografia e Escalas Fluidas */
@@ -138,9 +138,9 @@ body {
     outline: none;
 }
 
-/* ==========================================================================
+/*
    HERO SECTION (BANNER PRINCIPAL)
-   ========================================================================== */
+    */
 .hero {
     min-height: clamp(350px, 50vh, 550px);
     background: linear-gradient(135deg, rgba(10, 25, 47, 0.88) 0%, rgba(2, 6, 23, 0.95) 100%);

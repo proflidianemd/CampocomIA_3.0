@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     // ==========================================================================
-    // ACESSIBILIDADE - REDIMENSIONAMENTO DE FONTE E ALTERNAÇÃO DE TEMA
+    // ACESSIBILIDADE 
     // ==========================================================================
     const btnAumentar = document.getElementById("btn-aumentar");
     const btnDiminuir = document.getElementById("btn-diminuir");
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ==========================================================================
-    // SÍNTESE DE VOZ (SPEECH SYNTHESIS API) - CONTEÚDO PRINCIPAL EXCLUSIVO
+    // SÍNTESE DE VOZ (SPEECH SYNTHESIS API) 
     // ==========================================================================
     const btnLer = document.getElementById("btn-ler");
     const btnParar = document.getElementById("btn-parar");
