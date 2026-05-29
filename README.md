@@ -17,3 +17,4 @@ O projeto aborda a transformação tecnológica e digital do ecossistema de agro
     * **Alternador de Contraste (`🌓`):** Aciona instantaneamente a inversão de propriedades de cores do *Modo Escuro Premium* para o *Modo Claro de Alta Legibilidade*.
     * **Leitura Automatizada (`🔊` / `⏹️`):** Aciona a SpeechSynthesis API do navegador para converter o texto em voz. O algoritmo foi desenvolvido para ler **apenas** o corpo informativo do artigo, ignorando botões, links de rodapé ou campos de formulário para garantir um consumo limpo do conteúdo.
 
+nmn
